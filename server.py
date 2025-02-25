@@ -13,7 +13,10 @@ def emo_detector():
         emotions = ", ".join(f"'{emotion}': {score}" for emotion, score in response_dict.items() if emotion != "dominant_emotion")
         dominant_emotion = response_dict["dominant_emotion"]
 
-        return f"For the given statement, the system response is {emotions}. The dominant emotion is {dominant_emotion}."
+        if dominant_emotion is None:
+            return "Invalid text! Please try again!"
+        else:
+            return f"For the given statement, the system response is {emotions}. The dominant emotion is {dominant_emotion}."
 
     formatted_response = format_response(response)
     return formatted_response
